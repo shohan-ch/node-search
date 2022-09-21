@@ -8,7 +8,7 @@ server.createServer((req,res)=>{
         res.end("Home page")
     }
     if(req.url=="/article"){
-        res.end(`<h2>Artcicle page</h2>`)
+        res.end(`<h2>Artcicle page12</h2>`)
     }
     console.log(req)
     // console.log(res);
