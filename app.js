@@ -1,11 +1,19 @@
-const {firstName} = require('./name')
-
-const {nameFun} = require('./functionName')
-
-nameFun(firstName)
+const server = require('node:http')
 
 
-const os = require("os")
 
+server.createServer((req,res)=>{
 
-console.log(os)
+    if(req.url=='/'){
+        res.end("Home page")
+    }
+    if(req.url=="/article"){
+        res.end(`<h2>Artcicle page</h2>`)
+    }
+    console.log(req)
+    // console.log(res);
+
+}).listen(3000)
+
+// server.
+// console.log(server);
