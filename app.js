@@ -26,6 +26,8 @@ server.createServer((req,res)=>{
         console.log(companies);
         res.end(companies[0].name)
     }
+
+    
     if(req.url=="/article"){
         res.end(`<h2>Artcicle page12</h2>`)
     }
