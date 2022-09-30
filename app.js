@@ -1,40 +1,33 @@
-const server = require('node:http')
+let {readFile} = require('fs')
 
 
-let companies = [
-    {
-      name: "company A",
-      logo: "https://placekitten.com/200/300",
-      Specialties: ["Excavation", "Plumbing", "Electrica"],
-    },
-    {
-      name: "company B",
-      logo: "https://placekitten.com/200/300",
-      Specialties: ["Excavation"],
-    },
-    {
-      name: "company C",
-      logo: "https://placekitten.com/200/300",
-      Specialties: ["Excavation", "Plumbing"],
-    },
-  ];
 
-server.createServer((req,res)=>{
+const getText =  (path)=>{
+return new Promise((resolve, reject)=>{
+readFile(path,'utf8', (err,data)=>{
+  if (err) reject(err)
+  resolve(data)
+})
 
-    if(req.url=='/'){
+})
+}
 
-        console.log(companies);
-        res.end(companies[0].name)
-    }
+const fileRead  =  async ()=>{
+  try{
+    let firstData =  await getText('./public/text.txt')
+    let secondData =  await getText('./public/text1.txt')
+    console.log(firstData, secondData)
+  }catch(err){
+    console.log(err)
+  }
 
-    
-    if(req.url=="/article"){
-        res.end(`<h2>Artcicle page12</h2>`)
-    }
-    // console.log(req)
-    // console.log(res);
+}
 
-}).listen(3000)
 
-// server.
-// console.log(server);
+fileRead()
+
+
+
+
+
+
