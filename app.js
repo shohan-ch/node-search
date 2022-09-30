@@ -1,4 +1,19 @@
-let {readFile} = require('fs').promises
+const { writeFile,readFile } = require('fs').promises
+
+
+const fileRead  =  async ()=>{
+  try{
+    let firstData =  await readFile('./public/text.txt', 'utf-8')
+    let secondData = await readFile('./public/text1.txt','utf8')
+    await writeFile('./public/write.txt',`Hello my name is shohan`)
+    console.log(firstData, secondData)
+  }catch(err){
+    console.log(err)
+  }
+
+}
+
+fileRead()
 
 
 
@@ -11,20 +26,6 @@ let {readFile} = require('fs').promises
 
 // })
 // }
-
-const fileRead  =  async ()=>{
-  try{
-    let firstData =  await readFile('./public/text.txt', 'utf-8')
-    let secondData =  await readFile('./public/text1.txt','utf8')
-    console.log(firstData, secondData)
-  }catch(err){
-    console.log(err)
-  }
-
-}
-
-
-fileRead()
 
 
 
