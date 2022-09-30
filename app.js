@@ -1,21 +1,21 @@
-let {readFile} = require('fs')
+let {readFile} = require('fs').promises
 
 
 
-const getText =  (path)=>{
-return new Promise((resolve, reject)=>{
-readFile(path,'utf8', (err,data)=>{
-  if (err) reject(err)
-  resolve(data)
-})
+// const getText =  (path)=>{
+// return new Promise((resolve, reject)=>{
+// readFile(path,'utf8', (err,data)=>{
+//   if (err) reject(err)
+//   resolve(data)
+// })
 
-})
-}
+// })
+// }
 
 const fileRead  =  async ()=>{
   try{
-    let firstData =  await getText('./public/text.txt')
-    let secondData =  await getText('./public/text1.txt')
+    let firstData =  await readFile('./public/text.txt', 'utf-8')
+    let secondData =  await readFile('./public/text1.txt','utf8')
     console.log(firstData, secondData)
   }catch(err){
     console.log(err)
