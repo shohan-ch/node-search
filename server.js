@@ -23,8 +23,9 @@ server.createServer((req,res)=>{
 
     if(req.url=='/'){
 
-        console.log(companies);
-        res.end(companies[0].name)
+        console.log(res);
+        res.write("Home page");
+        res.end()
     }
 
     
