@@ -4,8 +4,10 @@ const {writeFile} = require('fs').promises
 const server = http.createServer((req,res)=>{
 
   if(req.url=='/'){
-    await = writeFile('./public/fileSync.text', 'Hello This is sync file text\n 123');
-    res.end('hello world')
+    const json  = JSON.stringify({status:true, data:123}) 
+    // res.json({name:"shohan"})
+    // res.end('hello world')
+    res.end(json)
   }
 
 })
