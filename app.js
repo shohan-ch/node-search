@@ -1,34 +1,15 @@
-const { writeFile,readFile } = require('fs').promises
+const http  = require('http');
+const {writeFile} = require('fs').promises
 
+const server = http.createServer((req,res)=>{
 
-const fileRead  =  async ()=>{
-  try{
-    let firstData =  await readFile('./public/text.txt', 'utf-8')
-    let secondData = await readFile('./public/text1.txt','utf8')
-    await writeFile('./public/write.txt',`Hello my name is shohan`)
-    console.log(firstData, secondData)
-  }catch(err){
-    console.log(err)
+  if(req.url=='/'){
+    await = writeFile('./public/fileSync.text', 'Hello This is sync file text\n 123');
+    res.end('hello world')
   }
 
-}
+})
 
-fileRead()
-
-
-
-// const getText =  (path)=>{
-// return new Promise((resolve, reject)=>{
-// readFile(path,'utf8', (err,data)=>{
-//   if (err) reject(err)
-//   resolve(data)
-// })
-
-// })
-// }
-
-
-
-
-
-
+server.listen(3000,()=>{
+  console.log('server is listening on port 3000')
+})
