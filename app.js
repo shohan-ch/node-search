@@ -1,6 +1,26 @@
 const http  = require('http');
 const {writeFile} = require('fs').promises
 const server =  http.createServer((req,res)=>{
+
+  let companies = [
+    {
+      name: "company A",
+      logo: "https://placekitten.com/200/300",
+      Specialties: ["Excavation", "Plumbing", "Electrica"],
+    },
+    {
+      name: "company B",
+      logo: "https://placekitten.com/200/300",
+      Specialties: ["Excavation"],
+    },
+    {
+      name: "company C",
+      logo: "https://placekitten.com/200/300",
+      Specialties: ["Excavation", "Plumbing"],
+    },
+  ];
+
+
   let {url} = req;
 
 if(url=='/'){
@@ -8,25 +28,24 @@ if(url=='/'){
  console.log(req.body)
   }
 
-if(url=='/json'){ 
-    const data = JSON.stringify({name:'shohan'})
+if(url=='/companies'){ 
+    const data = JSON.stringify(companies)
     res.end(data);
   }
  
 if(url=='/company-search'){
    let chunkData = [];
-req.on('data', (chunk)=>{
-
-   chunkData.push(chunk);
-})
-req.on('end', ()=>{
-  console.log('Chunk data have arrived');
-  const data = Buffer.concat(chunkData);
-  // console.log('Buffer Data',data)
-  const stringData =  data.toString();
-  const formData =  JSON.parse(stringData);
-  console.log('Data:',formData.roll)
-})
+   req.on('data', (chunk)=>{
+     chunkData.push(chunk);
+  })
+   req.on('end', ()=>{
+    console.log('Chunk data have arrived');
+    const data = Buffer.concat(chunkData);
+    // console.log('Buffer Data',data)
+    const stringData =  data.toString();
+    const formData =  JSON.parse(stringData);
+    console.log('Data:',formData.roll)
+ })
  
   res.end('Comapany Search Page')
 }
