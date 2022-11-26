@@ -12,9 +12,23 @@ if(url=='/json'){
     const data = JSON.stringify({name:'shohan'})
     res.end(data);
   }
+ 
 if(url=='/company-search'){
+   let chunkData = [];
+req.on('data', (chunk)=>{
 
-  res.end('Comapany Search')
+   chunkData.push(chunk);
+})
+req.on('end', ()=>{
+  console.log('Chunk data have arrived');
+  const data = Buffer.concat(chunkData);
+  // console.log('Buffer Data',data)
+  const stringData =  data.toString();
+  const formData =  JSON.parse(stringData);
+  console.log('Data:',formData.roll)
+})
+ 
+  res.end('Comapany Search Page')
 }
 
 
