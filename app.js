@@ -1,17 +1,29 @@
 const http  = require('http');
 const {writeFile} = require('fs').promises
+const server =  http.createServer((req,res)=>{
+  let {url} = req;
 
-const server = http.createServer((req,res)=>{
-
-  if(req.url=='/'){
-    const json  = JSON.stringify({status:true, data:123}) 
-    // res.json({name:"shohan"})
-    // res.end('hello world')
-    res.end(json)
+if(url=='/'){
+ res.end("Home");
+ console.log(req.body)
   }
 
+if(url=='/json'){ 
+    const data = JSON.stringify({name:'shohan'})
+    res.end(data);
+  }
+if(url=='/company-search'){
+
+  res.end('Comapany Search')
+}
+
+
+
+
+ 
+ 
 })
 
 server.listen(3000,()=>{
-  console.log('server is listening on port 3000')
+  console.log('listening at port'+3000)
 })
